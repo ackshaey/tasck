@@ -10,7 +10,8 @@ end
 
 group :production do
 	# Use sqlite3 as the database for Active Record
-	gem 'pg'	
+	gem 'pg'
+	gem 'rails_12factor'	
 end
 
 # Use for including Bootstrap sass version. Branch 3 for latest version
