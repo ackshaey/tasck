@@ -1,4 +1,7 @@
 Tasck::Application.routes.draw do
+  # maps HTTP verbs to controller actions automatically
+  resources :tasks
+
   devise_for :users
   # get "pages/home"
   root "pages#home"
