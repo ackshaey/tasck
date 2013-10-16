@@ -1,11 +1,13 @@
 <h1>Listing tasks</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
+      <th>User Id</th>
       <th>Description</th>
-      <th>Due</th>
+      <th>Email</th>
+      <!-- <th>Due</th> -->
       <th>Priority</th>
       <th></th>
       <th></th>
@@ -17,12 +19,16 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
+        <td><%= task.user_id %></td>
         <td><%= task.description %></td>
-        <td><%= task.due %></td>
+        <td><%= task.user.email if task.user %></td>
+        <!-- <td><%= task.due %></td> -->
         <td><%= task.priority %></td>
         <td><%= link_to 'Show', task %></td>
+        <% if task.user == current_user && (!current_user.nil?) %>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +36,6 @@
 
 <br>
 
+<% if user_signed_in? %>
 <%= link_to 'New Task', new_task_path %>
+<% end %>

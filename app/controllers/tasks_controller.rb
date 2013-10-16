@@ -1,6 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  # Devise helper, authenticate before allowing these actions from wi
+  # thin the controller. Except is opposite of only 
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
+
+  # Devise Helper : current_user
   # GET /tasks
   # GET /tasks.json
   # If there are no view loading or additional
@@ -16,7 +22,9 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+  # No need to pass params here
+  @task = current_user.tasks.build
+  #  @task = Task.new
   end
 
   # GET /tasks/1/edit
@@ -26,7 +34,9 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    # Passes the attributes, but user_id also gets passed
+    @task = current_user.tasks.build(task_params)
+    # @task = Task.new(task_params)
 
     respond_to do |format|
       if @task.save
@@ -72,5 +82,21 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:name, :description, :due, :priority)
+    end
+
+    # Helper method correct user
+    def correct_user
+      # This line raises an error by default if record is not found. user alt
+      # @task = current_user.tasks.find(params[:id])
+      if current_user.nil?
+        redirect_to new_user_session_path, notice: "Login or Signup to edit tasks"
+      else        
+      @task = current_user.tasks.find_by(id: params[:id])
+        if @task.nil?
+          redirect_to tasks_path, notice: "Not authorized to edit this task" 
+          # Alt syntax
+          # flash[:notice] = "Message"     
+        end
+      end      
     end
 end
