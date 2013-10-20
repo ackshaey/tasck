@@ -3,6 +3,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Image</th>
       <th>Name</th>
       <th>User Id</th>
       <th>Description</th>
@@ -18,6 +19,7 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
+        <td><%= image_tag task.image.url(:medium) %></td>
         <td><%= task.name %></td>
         <td><%= task.user_id %></td>
         <td><%= task.description %></td>

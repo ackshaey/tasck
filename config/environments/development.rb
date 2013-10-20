@@ -29,4 +29,7 @@ Tasck::Application.configure do
 
   # Required for Heroku
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Paperclip
+  #Paperclip.options[:command_path] = "/c/Program Files/ImageMagick-6.8.7-Q16/"
 end
