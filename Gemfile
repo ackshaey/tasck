@@ -18,6 +18,9 @@ end
 #Signups and login
 gem "devise", "~> 3.1.1"
 
+# Paperclip for file uploads
+gem 'paperclip', '~> 3.0'
+
 # Use for including Bootstrap sass version. Branch 3 for latest version
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
