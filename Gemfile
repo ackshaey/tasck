@@ -20,9 +20,9 @@ gem "devise", "~> 3.1.1"
 
 # Paperclip for file uploads
 gem "paperclip", "~> 3.0"
-# gem 'cocaine', '~> 0.3.2'
-# This version of cocaine is causing issues with paperclip
-# gem 'cocaine', '~> 0.3.2'
+
+# AWS SDK
+gem 'aws-sdk', '~> 1.22.1'
 
 
 # Use for including Bootstrap sass version. Branch 3 for latest version
