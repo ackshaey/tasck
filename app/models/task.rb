@@ -5,5 +5,5 @@ class Task < ActiveRecord::Base
 	# rails generate migration add_user_id_to_tasks user_id:integer:index
 	belongs_to :user
 	# This one comes from paperclip
-	has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+	has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "missing.png"
 end

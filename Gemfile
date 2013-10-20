@@ -24,6 +24,9 @@ gem "paperclip", "~> 3.0"
 # AWS SDK
 gem 'aws-sdk', '~> 1.22.1'
 
+# JQuery Masonry
+gem 'masonry-rails', '~> 0.2.0'
+gem 'jquery-turbolinks'
 
 # Use for including Bootstrap sass version. Branch 3 for latest version
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
