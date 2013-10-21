@@ -2,15 +2,19 @@
   <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">  
     <% @tasks.each do |task| %>
       <div class="box panel panel-default">
+      <blockquote>
+      <p><%= task.name %></p>
+      </blockquote>
+
        <div class="panel-heading">
        <%= image_tag task.image.url(:medium) %>
        </div>
        <div class="panel-body">
-         <p><%= task.name %></p>
+         
          <p><%= task.description %></p>
-         <p><%= task.user.email if task.user %></p>
+         <!-- <p><%# task.user.email if task.user %></p> -->
           <!--<%= task.due %> -->
-         <p><%= task.priority %></p>
+         <p>Priority : <%= task.priority %></p>
          <hr/>
          <div class="panel-footer center">
            <%= link_to 'Show', task %>
