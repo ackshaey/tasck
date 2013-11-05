@@ -16,11 +16,14 @@
 				<%= image_tag @task.image.url(:medium) %>
 				<div class="panel-default panel-body text">
 					<p>
-						<strong>Description:</strong>
+					<strong><%= @task.user.name if @task.user  %></strong>
+					</p>
+					<p>
+						Description:
 						<%= @task.description %>
 					</p>
 					<p>
-						<strong>Due:</strong>
+						Due:
 						<%= @task.due %>
 					</p>
 					<p>

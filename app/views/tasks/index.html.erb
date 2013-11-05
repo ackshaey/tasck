@@ -10,7 +10,7 @@
        <%= link_to image_tag(task.image.url(:medium)), task %>
        </div>
        <div class="panel-body">
-         
+         <p><strong><%= task.user.name if task.user %></strong></p>
          <p><%= task.description %></p>
          <!-- <p><%# task.user.email if task.user %></p> -->
           <!--<%= task.due %> -->
