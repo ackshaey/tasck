@@ -1,32 +1,41 @@
-  <%= render 'pages/home' %>
-  <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">  
+<%# render 'pages/home' %>
+<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">  
     <% @tasks.each do |task| %>
-      <div class="box panel panel-default">
-      <blockquote>
-      <p><span class="label label-default">To-Do</span>&nbsp;<%= task.name %></p>
-      </blockquote>
-
-       <div class="panel-heading">
-       <%= link_to image_tag(task.image.url(:medium)), task %>
-       </div>
-       <div class="panel-body">
-         <p><strong><%= task.user.name if task.user %></strong></p>
-         <p><%= task.description %></p>
-         <!-- <p><%# task.user.email if task.user %></p> -->
-          <!--<%= task.due %> -->
-         <p>Priority : <span  class="badge"><%= task.priority %></span></p>
-         <hr/>
-         <% if task.user == current_user && (!current_user.nil?) %>
-           <div class="panel-footer center">
-              <div class="btn-group">
-                   <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_task_path(task), class: "btn btn-default" %>
-                   <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), task, class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %>
-                
-              </div>
-           </div>
-         <% end %>
+    <% if task.active != nil && task.active%>
+    <div class="box panel panel-default">
+        <% else %>
+        <div class="box panel panel-default inactive">
+            <% end %>
+            <blockquote>
+                <p><span class="label label-default">To-Do</span>&nbsp;<%= task.name %></p>
+            </blockquote>
+            <div class="panel-heading center">
+                <%= form_for task do |f| %>
+                <%= f.hidden_field :active, value: false %>
+                <% if task.active != nil && task.active %>
+                <%= f.submit "Mark as Completed", class: "btn btn-default center" %>
+                <% end %>
+                <%= link_to image_tag(task.image.url(:medium)), task %>
+            </div>
+            <div class="panel-body">
+                <p><strong><%= task.user.name if task.user %></strong></p>
+                <p><%= task.description %></p>
+                <!-- <p><%# task.user.email if task.user %></p> -->
+                <!--<%= task.due %> -->
+                <p>Priority : <span  class="badge"><%= task.priority %></span></p>
+                <hr/>
+                <% if task.user == current_user && (!current_user.nil?) %>
+                <div class="panel-footer center">
+                    <div class="btn-group">
+                        <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_task_path(task), class: "btn btn-default" %>
+                        <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), task, class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <% end %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
         </div>
-      </div>
-    <% end %>
-    
-  </div>
+        <% end %>
+
+    </div>
+</div>

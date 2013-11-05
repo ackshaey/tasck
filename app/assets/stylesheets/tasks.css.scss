@@ -7,11 +7,15 @@
 
 .box {
 	margin: 5px;
-	width: 214px;
+	width: 227px;
 }
 
 .box img {
 	width: 100%;
+}
+
+.inactive{
+  opacity: 0.3;
 }
 
 #masonry-container {
