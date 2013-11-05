@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   # If there are no view loading or additional
   # commands, will automatically load views/tasks/index.html.erb
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order("created_at DESC")
   end
 
   # GET /tasks/1
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   # No need to pass params here
   @task = current_user.tasks.build
   #  @task = Task.new
-  end
+end
 
   # GET /tasks/1/edit
   def edit
@@ -91,7 +91,7 @@ class TasksController < ApplicationController
       if current_user.nil?
         redirect_to new_user_session_path, notice: "Login or Signup to edit tasks"
       else        
-      @task = current_user.tasks.find_by(id: params[:id])
+        @task = current_user.tasks.find_by(id: params[:id])
         if @task.nil?
           redirect_to tasks_path, notice: "Not authorized to edit this task" 
           # Alt syntax
@@ -99,4 +99,4 @@ class TasksController < ApplicationController
         end
       end      
     end
-end
+  end
