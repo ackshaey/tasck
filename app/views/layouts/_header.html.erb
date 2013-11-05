@@ -41,8 +41,14 @@
         <span class="glyphicon glyphicon-plus"></span> New Task
         <% end %>
       </li>
-      <li><%= link_to "Account", edit_user_registration_path %></li>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to edit_user_registration_path do %>
+        <span class="glyphicon glyphicon-user"></span> Account
+        <% end %>
+      </li>
+      <li><%= link_to destroy_user_session_path, method: :delete do %>
+        <span class="glyphicon glyphicon-off"></span> Sign Out
+        <% end %>
+      </li>
       <% end %>
       <!-- <li><a href="#">Link</a></li>
       <li class="dropdown">
