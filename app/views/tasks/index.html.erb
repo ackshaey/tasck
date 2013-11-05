@@ -1,4 +1,4 @@
-<%# render 'pages/home' %>
+<%= render 'pages/home' %>
 <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">  
     <% @tasks.each do |task| %>
     <% if task.active != nil && task.active%>
@@ -13,7 +13,7 @@
                 <%= form_for task do |f| %>
                 <%= f.hidden_field :active, value: false %>
                 <% if task.active != nil && task.active %>
-                <%= f.submit "Mark as Completed", class: "btn btn-default center" %>
+                <%= f.submit "Mark as Completed", class: "btn btn-primary center" %>
                 <% end %>
                 <%= link_to image_tag(task.image.url(:medium)), task %>
             </div>
@@ -29,9 +29,10 @@
                     <div class="btn-group">
                         <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_task_path(task), class: "btn btn-default" %>
                         <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), task, class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %>
-                        <% end %>
                     </div>
                 </div>
+                <% end %>
+                
                 <% end %>
             </div>
         </div>

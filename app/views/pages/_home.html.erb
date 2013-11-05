@@ -1,7 +1,10 @@
+
+<% if !user_signed_in? %>
 <div class ="jumbotron center">
 	<h1>Welcome to <span class="purple">Tasck<sup><small>&copy;</small></sup></span>!</h1>
-	<% if !user_signed_in? %>
-			<%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg"%>
+	<%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg"%>
 	<%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg"%>
-	<% end %>
 </div>
+<% else %>
+<div class="well well-sm"><small>Welcome <%= current_user.name%>! Tasck (alpha) lets you manage your day in a whole new way. Try it out!</small></div>
+<% end %>
